@@ -27,6 +27,11 @@ class RecipesController < ApplicationController
 
   def index
     @recipes = Recipe.all
+
+    if params[:search]
+      @recipes = @recipes.sort_by{|r| r.ingredients_in_common(params[:search].split(",")) }.reverse
+      @search = true
+    end
   end
 
   def destroy

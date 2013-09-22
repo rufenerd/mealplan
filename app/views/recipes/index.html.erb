@@ -1,3 +1,6 @@
+Search for meals with many of these ingredients: <%= hidden_field_tag :search, {}, class: 'search-input', width: '100px' %>
+<br/>
+<%= submit_tag :search, class: 'search-submit' %>
 <table>
   <tr>
     <th>Name</th>
@@ -12,8 +15,25 @@
         <%= link_to "X", recipe_path(recipe), :method => :delete, :confirm => "Are you sure?" %>
       </td>
     </tr>
-  <br/>  
+  <br/>
   <% end %>
 </table>
 <br/>
 <%= link_to "Create New Recipe", new_recipe_path %>
+
+
+<script>
+  $(".search-input").select2({
+    multiple: true,
+    data: <%= ("[" + Ingredient.all.map{|i| "{id: #{i.id}, text: '#{i.name}'}"}.join(",") + "]").html_safe %>,
+    width: "100%"
+  });
+
+  $(".search-submit").on("click", function(){
+    var selected = $(".search-input").select2("val"); 
+    selected.splice(0,1); //No idea why, but selected includes {} as first element in array
+    if ( selected.length ) {
+      window.location ="/recipes?search=" + selected;
+    }
+  });
+</script>

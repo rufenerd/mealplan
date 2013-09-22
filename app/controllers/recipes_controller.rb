@@ -8,7 +8,12 @@ class RecipesController < ApplicationController
     if r.save
       params[:recipe_ingredients].each do |num, ri|
         next if ri[:quantity].blank? && ri[:ingredient_id].blank?
-        RecipeIngredient.create(ri.merge(:recipe_id => r.id))
+        match = ri[:ingredient_id].match(/NEWINGREDIENT\[(.+)\]/)
+        if match
+          i = Ingredient.create( name: match[1] )
+          ri.merge!(ingredient_id: i.id)
+        end
+        RecipeIngredient.create(ri.merge(recipe_id: r.id))
       end
       redirect_to action: :show, id: r.id
     else

@@ -3,4 +3,12 @@
   <%= @recipe.text %>
 </p>
 
+<br/>
+
+<% @recipe.recipe_ingredients.each do |ri| %>
+  <%= "#{ri.quantity} #{ri.ingredient.name}" %>
+  <br/>
+<% end %>
+
+<br/>
 <%= link_to "All Recipes", recipes_path %>

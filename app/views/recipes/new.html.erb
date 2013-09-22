@@ -5,5 +5,15 @@
   <%= f.label :text %>
   <%= f.text_area :text %>
   <br/>
+  <% 10.times do |i| %>
+    <%= fields_for "recipe_ingredients[#{i}]" do |ingredient_fields| %>
+      <%= ingredient_fields.label :quantity %>
+      <%= ingredient_fields.text_field :quantity %>
+      <%= ingredient_fields.label :name %>
+      <%= ingredient_fields.collection_select :ingredient_id, Ingredient.all, :id, :name, include_blank: true  %>
+      <br/>
+    <% end %>
+  <% end %>
+
   <%= f.submit %>
 <% end %>

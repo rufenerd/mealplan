@@ -4,8 +4,13 @@ class RecipesController < ApplicationController
   end
 
   def create
-    if Recipe.create(recipe_params)
-      redirect_to :action => :index
+    r = Recipe.new(recipe_params)
+    if r.save
+      params[:recipe_ingredients].each do |num, ri|
+        next if ri[:quantity].blank? && ri[:ingredient_id].blank?
+        RecipeIngredient.create(ri.merge(:recipe_id => r.id))
+      end
+      redirect_to action: :show, id: r.id
     else
       redirect_to :action => :new
     end

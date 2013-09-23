@@ -1,12 +1,12 @@
 class Recipe < ActiveRecord::Base
   has_many :recipe_ingredients, dependent: :destroy
   has_many :ingredients, through: :recipe_ingredients
-  has_many :meal_plan_recipes
+  has_many :meal_plan_recipes, dependent: :destroy
   has_many :meal_plans, through: :meal_plan_recipes
 
   validates_presence_of :name
 
-  after_save :destroy_unused_ingredients
+  after_destroy :destroy_unused_ingredients
 
   def ingredients_in_common(other_ingredients)
     if other_ingredients.first.match(/^\d+$/)
@@ -19,6 +19,6 @@ class Recipe < ActiveRecord::Base
   private
 
   def destroy_unused_ingredients
-    ingredients.select{|i| i.recipes.empty? }.each(&:destroy)
+    ingredients.select{|i| i.recipes == [self] }.each(&:destroy)
   end
 end

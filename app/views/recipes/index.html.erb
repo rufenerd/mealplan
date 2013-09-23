@@ -12,7 +12,7 @@ Search for meals with many of these ingredients: <%= hidden_field_tag :search, {
         <%= link_to recipe.name, recipe_path(recipe) %>
       </td>
       <td>
-        <%= link_to "X", recipe_path(recipe), :method => :delete, :confirm => "Are you sure?" %>
+        <%= link_to "X", recipe_path(recipe), :method => :delete, :confirm => "Are you sure you want to destroy recipe \"" + recipe.name + "\"?"  %>
       </td>
     </tr>
   <br/>

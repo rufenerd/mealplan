@@ -16,4 +16,5 @@
 //= require_tree .
 
 //= require select2
+//= require underscore.min
 

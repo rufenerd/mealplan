@@ -31,6 +31,8 @@ class RecipesController < ApplicationController
     if params[:search]
       @recipes = @recipes.sort_by{|r| r.ingredients_in_common(params[:search].split(",")) }.reverse
       @search = true
+    else
+      @recipes = @recipes.sort_by(&:name)
     end
   end
 

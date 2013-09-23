@@ -28,7 +28,7 @@
   data: <%= ("[" + Ingredient.all.map{|i| "{id: #{i.id}, text: '#{i.name}'}"}.join(",") + "]").html_safe %>
   });
 
-  $(".ingredient-form.hidden").hide().first().show()
+  _.each($(".ingredient-form.hidden").hide().splice(0,5), function(form){ $(form).removeClass('hidden').show(); })
 
   $(".add-button").on("click", function(){
     $(".ingredient-form.hidden").first().removeClass("hidden").show();

@@ -1,4 +1,4 @@
 mealplan
 ========
 
-A simple meal plan app designed to meet my own needs
+A quick, simple and ugly meal plan app designed to meet my own meal planning needs

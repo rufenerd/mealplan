@@ -3,7 +3,7 @@
   <%= f.text_field :name %>
   <br/>
   <%= f.label :text %>
-  <%= f.text_area :text %>
+  <%= f.text_area :text, rows: 20, cols: 50 %>
   <br/>
   <div class="ingredient-forms">
     <% 100.times do |i| #TODO: Not cool, use templates.  %>

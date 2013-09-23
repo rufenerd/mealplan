@@ -1,5 +1,11 @@
 Mealplan::Application.routes.draw do
   resources :recipes
+  resources :meal_plans do
+    collection do
+      get 'add_recipe'
+      get 'remove_recipes'
+    end
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

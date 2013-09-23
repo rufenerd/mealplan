@@ -1,0 +1,9 @@
+<% @meal_plan.recipes.each do |r| %>
+  <%= link_to r.name, recipe_path(r.id) %>
+<% end %>
+
+<h2>Shopping List</h2>
+<% @shopping_list.each do |ingredient, ris| %>
+  <strong><%= ingredient.name %></strong><%= ": " + ris.map{|ri| "#{ri.quantity} (for #{ri.recipe.name})" }.join(" & ") %>
+  <br/>
+<% end %>

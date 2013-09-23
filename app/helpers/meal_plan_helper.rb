@@ -1,0 +1,2 @@
+module MealPlanHelper
+end

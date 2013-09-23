@@ -1,0 +1,11 @@
+<ul>
+  <% @meal_plans.each do |mp| %>
+    <li>
+      <% mp.recipes.each do |r| %>
+        <%= link_to r.name, recipe_path(r.id) %>
+      <% end %>
+      <%= link_to "Shopping List", meal_plan_path(mp.id) %>
+      <%= link_to "X", meal_plan_path(mp.id), method: :delete, confirm: "Are you sure?" %>
+    </li>
+  <% end %>
+</ul>

@@ -5,17 +5,18 @@
   <%= f.label :text %>
   <%= f.text_area :text %>
   <br/>
-  <% 10.times do |i| %>
-    <%= fields_for "recipe_ingredients[#{i}]" do |ingredient_fields| %>
-      <%= ingredient_fields.label :quantity %>
-      <%= ingredient_fields.text_field :quantity %>
-      <%= ingredient_fields.label :name %>
-      <%= ingredient_fields.hidden_field(:ingredient_id, :class => 'ingredient-input') %>
-      <br/>
+  <div class="ingredient-forms">
+    <% 100.times do |i| #TODO: Not cool, use templates.  %>
+      <%= render :partial => "ingredient_form", :locals => { :i => i } %>
     <% end %>
-  <% end %>
+
+    <button type ='button' class='add-button''>Add Another Ingredient</button>
+    <br/>
+    <br/>
+  </div>
 
   <%= f.submit %>
+
 <% end %>
 
 <script>
@@ -25,5 +26,15 @@
       return { id: "NEWINGREDIENT[" + term + "]", text: term };
     },
   data: <%= ("[" + Ingredient.all.map{|i| "{id: #{i.id}, text: '#{i.name}'}"}.join(",") + "]").html_safe %>
+  });
+
+  $(".ingredient-form.hidden").hide().first().show()
+
+  $(".add-button").on("click", function(){
+    $(".ingredient-form.hidden").first().removeClass("hidden").show();
+  });
+
+  $(".destroy-ingredient-form").on("click", function(){
+    var form = $(this).parent().remove();
   });
 </script>

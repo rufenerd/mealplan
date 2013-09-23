@@ -4,6 +4,7 @@ class RecipesController < ApplicationController
   end
 
   def create
+    raise pararms.inspect
     r = Recipe.new(recipe_params)
     if r.save
       params[:recipe_ingredients].each do |num, ri|

@@ -1,6 +1,10 @@
 Search for meals with many of these ingredients: <%= hidden_field_tag :search, {}, class: 'search-input' %>
-<br/>
 <%= submit_tag :search, class: 'search-submit' %>
+<br/>
+<br/>
+<% if num_recipes_in_current_meal_plan > 0 %>
+  <%= submit_tag "Sort by overlap with current meal plan", class: 'overlap-submit' %>
+<% end %>
 <table>
   <tr>
     <th>Recipe</th>
@@ -30,7 +34,7 @@ Search for meals with many of these ingredients: <%= hidden_field_tag :search, {
   $(".search-input").select2({
     multiple: true,
     data: <%= ("[" + Ingredient.all.map{|i| "{id: #{i.id}, text: '#{i.name}'}"}.join(",") + "]").html_safe %>,
-    width: "100%"
+    width: "400px"
   });
 
   $(".search-submit").on("click", function(){
@@ -39,5 +43,9 @@ Search for meals with many of these ingredients: <%= hidden_field_tag :search, {
     if ( selected.length ) {
       window.location ="/recipes?search=" + selected;
     }
+  });
+
+  $(".overlap-submit").on("click", function(){
+      window.location ="/recipes?search='overlap'"
   });
 </script>

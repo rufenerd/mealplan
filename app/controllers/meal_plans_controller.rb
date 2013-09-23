@@ -18,7 +18,7 @@ class MealPlansController < ApplicationController
     if @meal_plan.save
       session[:recipe_ids] = ""
     end
-    redirect_to action: :index
+    redirect_to meal_plan_path(@meal_plan)
   end
 
   def destroy

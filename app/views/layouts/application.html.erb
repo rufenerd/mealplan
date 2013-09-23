@@ -9,9 +9,8 @@
 <body>
 <%= link_to "Recipes", recipes_path %>
 <%= link_to "Saved Meal Plans", meal_plans_path %>
-<% num_recipes = session[:recipe_ids].try(:split, ',').try(:size).to_i %>
-<%  if num_recipes > 0 %>
-  <%= link_to("Save Meal Plan with #{num_recipes} Recipe(s)", meal_plans_path, method: :post) %>
+<% if num_recipes_in_current_meal_plan > 0 %>
+  <%= link_to("Save Meal Plan with #{num_recipes_in_current_meal_plan} Recipe(s)", meal_plans_path, method: :post) %>
   <%= link_to "Empty Meal Plan", remove_recipes_meal_plans_path %>
 <% end %>
 <br/>

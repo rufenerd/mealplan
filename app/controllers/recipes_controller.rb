@@ -10,7 +10,7 @@ class RecipesController < ApplicationController
         next if ri[:quantity].blank? && ri[:ingredient_id].blank?
         match = ri[:ingredient_id].match(/NEWINGREDIENT\[(.+)\]/)
         if match
-          i = Ingredient.create( name: match[1] )
+          i = Ingredient.find_by_name(match[1].strip) || Ingredient.create( name: match[1] )
           ri.merge!(ingredient_id: i.id)
         end
         RecipeIngredient.create(ri.merge(recipe_id: r.id))
@@ -29,8 +29,13 @@ class RecipesController < ApplicationController
     @recipes = Recipe.all
 
     if params[:search]
-      @recipes = @recipes.sort_by{|r| r.ingredients_in_common(params[:search].split(",")) }.reverse
-      @search = true
+      if params[:search].include?("overlap")
+        ids = Recipe.find(session[:recipe_ids].split(",")).map(&:ingredient_ids).flatten
+      else
+        ids = params[:search].split(",").map(&:to_i)
+      end
+
+      @recipes = @recipes.sort_by{|r| r.ingredients_in_common(ids) }.reverse
     else
       @recipes = @recipes.sort_by(&:name)
     end

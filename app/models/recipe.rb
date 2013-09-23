@@ -9,7 +9,7 @@ class Recipe < ActiveRecord::Base
   after_destroy :destroy_unused_ingredients
 
   def ingredients_in_common(other_ingredients)
-    if other_ingredients.first.match(/^\d+$/)
+    if other_ingredients.first.is_a?(Numeric)
       (ingredient_ids & other_ingredients.map(&:to_i)).size
     else
       (ingredients & other_ingredients).size

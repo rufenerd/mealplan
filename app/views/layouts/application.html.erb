@@ -7,6 +7,10 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<% unless flash[:notice].blank? %>
+  <div class="notice"><%= flash[:notice] %></div>
+  <br/>
+<% end %>
 <%= link_to "Recipes", recipes_path %>
 <%= link_to "Saved Meal Plans", meal_plans_path %>
 <% if num_recipes_in_current_meal_plan > 0 %>

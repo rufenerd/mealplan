@@ -15,10 +15,9 @@ class RecipesController < ApplicationController
         end
         RecipeIngredient.create(ri.merge(recipe_id: r.id))
       end
-      redirect_to action: :show, id: r.id
-    else
-      redirect_to :action => :new
+      flash[:notice] = "Successfully created new recipe"
     end
+    redirect_to :action => :new
   end
 
   def show

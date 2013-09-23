@@ -10,12 +10,12 @@
       <%= render :partial => "ingredient_form", :locals => { :i => i } %>
     <% end %>
 
-    <button type ='button' class='add-button''>Add Another Ingredient</button>
+    <button type ='button' class='add-button'>Add Another Ingredient</button>
     <br/>
     <br/>
   </div>
 
-  <%= f.submit %>
+  <%= button_tag("Create Recipe!", class: 'recipe-submit') %>
 
 <% end %>
 
@@ -36,5 +36,10 @@
 
   $(".destroy-ingredient-form").on("click", function(){
     var form = $(this).parent().remove();
+  });
+
+  $(".recipe-submit").on('click', function(){
+    $(".hidden").remove();
+    $(".new_recipe").submit();    
   });
 </script>

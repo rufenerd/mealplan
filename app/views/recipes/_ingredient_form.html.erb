@@ -1,8 +1,6 @@
 <div class="ingredient-form hidden">
   <%= fields_for "recipe_ingredients[#{i}]" do |ingredient_fields| %>
-    <%= ingredient_fields.label :quantity %>
-    <%= ingredient_fields.text_field :quantity %>
-    <%= ingredient_fields.label :name %>
+    <%= ingredient_fields.text_field :quantity, placeholder: 'Quantity', size: '29' %>
     <%= ingredient_fields.hidden_field(:ingredient_id, :class => 'ingredient-input') %>
   <% end %>
   <a href="javascript:;" class='destroy-ingredient-form'>X</a>

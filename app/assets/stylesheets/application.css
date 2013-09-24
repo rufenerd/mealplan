@@ -26,7 +26,15 @@ body {
  color: #ff0000;
 }
 
+label {
+  font-weight: bold;
+  text-decoration: underline;
+  width: 150px;
+}
 
+input {
+  margin: 5px;
+}
 
 table {
 	font-family: verdana,arial,sans-serif;
@@ -50,3 +58,12 @@ table td {
 	border-color: #666666;
 	background-color: #ffffff;
 }
+
+.text-area-label {
+  display: block;    
+}
+
+.section {
+  margin: 10px;
+}
+

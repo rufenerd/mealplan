@@ -1,5 +1,6 @@
 class RecipesController < ApplicationController
   def new
+    @title = "New Recipe"
     @recipe = Recipe.new
   end
 

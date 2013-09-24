@@ -1,20 +1,19 @@
 <%= form_for @recipe do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-  <br/>
-  <%= f.label :text %>
-  <%= f.text_area :text, rows: 20, cols: 50 %>
-  <br/>
-  <div class="ingredient-forms">
+  <div class="section">
+    <%= f.label :name %>
+    <%= f.text_field :name, size: 60 %>
+  </div>
+  <div class="section ingredient-forms">
+    <label>Ingredients</label>
     <% 100.times do |i| #TODO: Not cool, use templates.  %>
       <%= render :partial => "ingredient_form", :locals => { :i => i } %>
     <% end %>
-
     <button type ='button' class='add-button'>Add Another Ingredient</button>
-    <br/>
-    <br/>
   </div>
-
+  <div class="section">
+    <%= f.label "Instructions", class: 'text-area-label' %>
+    <%= f.text_area :text, rows: 20, cols: 50 %>
+  </div>
   <%= button_tag("Create Recipe!", class: 'recipe-submit') %>
 
 <% end %>

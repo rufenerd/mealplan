@@ -9,7 +9,7 @@
 <body>
   <div class='header'>
     <% unless @title.blank? %>
-    <h2><%= @title %></h2>
+    <h1><%= @title %></h1>
     <% end %>
 
     <% unless flash[:notice].blank? %>
@@ -25,7 +25,7 @@
     <div class="nav no-print">
       <ul>
         <li><%= link_to "Recipes", recipes_path %></li>
-        <li><%= link_to "Old Meal Plans", meal_plans_path %></li>
+        <li><%= link_to "Meal Plans", meal_plans_path %></li>
         <% if num_recipes_in_current_meal_plan > 0 %>
           <li><%= link_to("Save Meal Plan with #{num_recipes_in_current_meal_plan} Recipe(s)", meal_plans_path, method: :post) %></li>
           <li><%= link_to "Empty Meal Plan", remove_recipes_meal_plans_path %></li>

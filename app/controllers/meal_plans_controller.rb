@@ -6,6 +6,7 @@ class MealPlansController < ApplicationController
   end
 
   def index
+    @title = "Old Meal Plans"
     @meal_plans = MealPlan.all
   end
 

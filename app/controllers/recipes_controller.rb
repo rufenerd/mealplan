@@ -30,6 +30,7 @@ class RecipesController < ApplicationController
   end
 
   def index
+    @title = "Recipes"
     @recipes = Recipe.all
 
     if params[:search]

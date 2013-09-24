@@ -1,11 +1,26 @@
-<ul>
+<table>
+  <tr>
+    <th>#</th>
+    <th>Recipes</th>
+    <th></th>
+    <th></th>
+  </tr>
   <% @meal_plans.each do |mp| %>
-    <li>
-      <% mp.recipes.each do |r| %>
-        <%= link_to r.name, recipe_path(r.id) %>
-      <% end %>
-      <%= link_to "Shopping List", meal_plan_path(mp.id) %>
-      <%= link_to "X", meal_plan_path(mp.id), method: :delete, confirm: "Are you sure?" %>
+    <tr>
+      <td>
+        <%= mp.id %>
+      </td>
+      <td>
+        <% mp.recipes.each do |r| %>
+          <%= link_to r.name, recipe_path(r.id) %>
+        <% end %>
+      </td>
+      <td>
+        <%= link_to "View Shopping List", meal_plan_path(mp.id) %>
+      </td>
+      <td>
+        <%= link_to "X", meal_plan_path(mp.id), method: :delete, confirm: "Are you sure?" %>
+      </td> 
     </li>
   <% end %>
 </ul>

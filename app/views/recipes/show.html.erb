@@ -7,4 +7,4 @@
   <%= @recipe.text %>
 </p>
 
-<%= link_to "Add this Recipe to Meal Plan", add_recipe_meal_plans_path(:id => @recipe.id) %>
+<%= link_to "Add this Recipe to Meal Plan", add_recipe_meal_plans_path(:id => @recipe.id), class: 'btn' %>

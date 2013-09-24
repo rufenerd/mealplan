@@ -7,7 +7,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <div class='header'>
+  <div class='header no-print'>
     <% unless @title.blank? %>
     <h2><%= @title %></h2>
     <% end %>
@@ -33,7 +33,6 @@
       </ul>
     </div>
   </div>
-  <hr>
   <br>
   <%= yield %>
 </body>

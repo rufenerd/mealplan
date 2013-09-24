@@ -1,10 +1,11 @@
 <% @recipe.recipe_ingredients.each do |ri| %>
-  <%= "#{ri.quantity} #{ri.ingredient.name}" %>
-  <br/>
+  <div class="section"><%= "#{ri.quantity} #{ri.ingredient.name}" %></div>
 <% end %>
+<hr>
+<div class='section'>
+  <p class='user-text'>
+    <%= @recipe.text %>
+  </p>
+</div>
 
-<p>
-  <%= @recipe.text %>
-</p>
-
-<%= link_to "Add this Recipe to Meal Plan", add_recipe_meal_plans_path(:id => @recipe.id), class: 'btn' %>
+<%= link_to "Add this Recipe to Meal Plan", add_recipe_meal_plans_path(:id => @recipe.id), class: 'btn no-print' %>

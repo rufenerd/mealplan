@@ -1,9 +1,13 @@
-<% @meal_plan.recipes.each do |r| %>
-  <%= link_to r.name, recipe_path(r.id) %>
-<% end %>
+<div class='section'>
+  <% @meal_plan.recipes.each do |r| %>
+    <h2><%= link_to r.name, recipe_path(r.id) %></h2>
+  <% end %>
+</div>
 
-<h2>Shopping List</h2>
-<% @shopping_list.each do |ingredient, ris| %>
-  <strong><%= ingredient.name %></strong><%= ": " + ris.map{|ri| "#{ri.quantity} (for #{ri.recipe.name})" }.join(" & ") %>
-  <br/>
-<% end %>
+<div class='section'>
+  <h3>Shopping List</h3>
+  <% @shopping_list.each do |ingredient, ris| %>
+    <strong><%= ingredient.name %></strong><%= ": " + ris.map{|ri| "#{ri.quantity} (for #{ri.recipe.name})" }.join(" & ") %>
+    <br/>
+  <% end %>
+</div>

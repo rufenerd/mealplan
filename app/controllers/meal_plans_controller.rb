@@ -1,6 +1,7 @@
 class MealPlansController < ApplicationController
   def show
     @meal_plan = MealPlan.find(params[:id])
+    @title = "Meal Plan #{@meal_plan.id}"
     @shopping_list = @meal_plan.recipes.map(&:recipe_ingredients).flatten.group_by(&:ingredient)
   end
 

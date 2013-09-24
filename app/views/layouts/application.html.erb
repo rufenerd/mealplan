@@ -7,7 +7,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <div class='header no-print'>
+  <div class='header'>
     <% unless @title.blank? %>
     <h2><%= @title %></h2>
     <% end %>
@@ -22,7 +22,7 @@
       <br/>
     <% end %>
       
-    <div class="nav">
+    <div class="nav no-print">
       <ul>
         <li><%= link_to "Recipes", recipes_path %></li>
         <li><%= link_to "Old Meal Plans", meal_plans_path %></li>

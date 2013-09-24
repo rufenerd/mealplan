@@ -54,7 +54,7 @@ table th {
 	padding: 8px;
 	border-style: solid;
 	border-color: #666666;
-	background-color: #dedede;
+	background-color: #98bf21;
 }
 table td {
 	border-width: 1px;
@@ -170,4 +170,8 @@ a.btn {
     {
         display: none !important;
     }
+}
+
+.user-text {
+  white-space:pre-line;
 }

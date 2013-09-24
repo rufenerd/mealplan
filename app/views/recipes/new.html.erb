@@ -8,13 +8,13 @@
     <% 100.times do |i| #TODO: Not cool, use templates.  %>
       <%= render :partial => "ingredient_form", :locals => { :i => i } %>
     <% end %>
-    <button type ='button' class='add-button'>Add Another Ingredient</button>
+    <button type ='button' class='add-button btn'>+</button>
   </div>
   <div class="section">
     <%= f.label "Instructions", class: 'text-area-label' %>
     <%= f.text_area :text, rows: 20, cols: 50 %>
   </div>
-  <%= button_tag("Create Recipe!", class: 'recipe-submit') %>
+  <%= button_tag("Create Recipe!", class: 'recipe-submit btn') %>
 
 <% end %>
 

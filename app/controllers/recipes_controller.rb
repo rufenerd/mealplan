@@ -26,6 +26,7 @@ class RecipesController < ApplicationController
 
   def show
     @recipe = Recipe.find(params[:id])
+    @title = @recipe.name
   end
 
   def index

@@ -18,6 +18,16 @@ body {
   background-color: #ddd;
 }
 
+.notice {
+ color: #4c7a3d;
+}
+
+.alert {
+ color: #ff0000;
+}
+
+
+
 table {
 	font-family: verdana,arial,sans-serif;
 	font-size:11px;

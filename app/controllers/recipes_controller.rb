@@ -16,6 +16,9 @@ class RecipesController < ApplicationController
         RecipeIngredient.create(ri.merge(recipe_id: r.id))
       end
       flash[:notice] = "Successfully created new recipe"
+    else
+      flash[:alert] = r.errors.full_messages.join(" | ")
+      flash.keep
     end
     redirect_to :action => :new
   end

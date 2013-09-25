@@ -5,6 +5,15 @@ class Ingredient < ActiveRecord::Base
   before_save :downcase_name
   before_destroy :ensure_unused
 
+
+  ALL_CATEGORIES = ["Staples",
+                    "Grains/Spices/Oils/Sauces/Canned Foods",
+                    "Dairy/Eggs/Deli",
+                    "Bakery/Bread/Tortillas",
+                    "Produce/Flowers",
+                    "Snack Foods/Packaged Meals/Frozen Foods",
+                    "Miscellaneous"]
+
   private
 
   def ensure_unused

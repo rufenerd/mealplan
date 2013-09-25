@@ -1,0 +1,24 @@
+<table>
+  <tr>
+    <th>Ingredient</th>
+    <th>Category</th>
+  <tr>
+  <% @ingredients.each do |i| %>
+    <tr>
+      <td><%= i.name %></td>
+      <td><%= select_tag "category", options_for_select(Ingredient::ALL_CATEGORIES, i.category), include_blank: true, class: 'category-select', ingId: i.id %></td>
+    </tr>
+  <% end %>
+</table>
+
+<script>
+  $('.category-select').on("change", function(e) {
+    var ingId = $(e.target).attr("ingId");
+    
+    $.ajax({
+      url: "ingredients/" + ingId,
+      type: 'PUT',
+      data: {"ingredient": { "category": $(e.target).val() }}
+    });
+  });
+</script>

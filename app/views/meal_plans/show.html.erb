@@ -1,13 +1,21 @@
 <div class='section'>
-  <% @meal_plan.recipes.each do |r| %>
-    <h2><%= link_to r.name, recipe_path(r.id) %></h2>
-  <% end %>
+  <strong style="font-size: 20px;">Recipes:</strong> <%= @meal_plan.recipes.map{|r| link_to r.name, recipe_path(r.id) }.join("&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;").html_safe %>
 </div>
 
 <div class='section'>
-  <h3>Shopping List</h3>
-  <% @shopping_list.each do |ingredient, ris| %>
-    <strong><%= ingredient.name %></strong><%= ": " + ris.map{|ri| "#{ri.quantity} (for #{ri.recipe.name})" }.join(" & ") %>
-    <br/>
+  <h3><u>Shopping List:</u></h3>
+  <% @ingredients_by_category.each do |category, ingredients| %>
+     <% ingredients.each do |i| %>
+        <strong><%= i.name %></strong><%= ": " + @shopping_list[i].map{|ri| "#{ri.quantity} (for #{ri.recipe.name})" }.join(" & ") %>
+        <br/>
+      <% end %>
   <% end %>
 </div>
+<br/>
+<br/>
+<br/>
+<% if(@staples.any?) %>
+  <div class="section staples">
+    <div><strong>Staples:</strong> <%= @staples.map(&:name).join(", ") %></div>
+  </div>
+<% end %>

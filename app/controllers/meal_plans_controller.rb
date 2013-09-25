@@ -2,7 +2,9 @@ class MealPlansController < ApplicationController
   def show
     @meal_plan = MealPlan.find(params[:id])
     @title = "Meal Plan #{@meal_plan.id}"
+    @staples, ingredients = @meal_plan.recipes.map(&:ingredients).flatten.uniq.partition{|i| i.category == "Staples" }
     @shopping_list = @meal_plan.recipes.map(&:recipe_ingredients).flatten.reject{|ri| ri.ingredient.category == "Staples" }.group_by(&:ingredient)
+    @ingredients_by_category = ingredients.group_by(&:category)
   end
 
   def index

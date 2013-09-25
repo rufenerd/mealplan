@@ -184,3 +184,9 @@ h1 {
   font-size: 50px;
   margin: 0;
 }
+
+.category-header {
+  padding: 20px 0;
+  font-style: italics;
+  text-decoration: underline;
+}

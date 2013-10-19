@@ -11,16 +11,6 @@
     <% unless @title.blank? %>
       <h1 class ='no-print'><%= @title %></h1>
     <% end %>
-
-    <% unless flash[:notice].blank? %>
-      <div class="notice"><%= flash[:notice] %></div>
-      <br/>
-    <% end %>
-    
-    <% unless flash[:alert].blank? %>
-      <div class="alert"><%= flash[:alert] %></div>
-      <br/>
-    <% end %>
       
     <div class="nav no-print">
       <ul>
@@ -33,6 +23,16 @@
         <% end %>
       </ul>
     </div>
+
+    <% unless flash[:notice].blank? %>
+      <div class="notice"><%= flash[:notice] %></div>
+      <br/>
+    <% end %>
+
+    <% unless flash[:alert].blank? %>
+      <div class="alert"><%= flash[:alert] %></div>
+      <br/>
+    <% end %>
   </div>
   <br>
   <%= yield %>

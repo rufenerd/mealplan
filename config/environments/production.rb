@@ -77,4 +77,11 @@ Mealplan::Application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+
+  
+  #http://stackoverflow.com/questions/16271696/cant-get-css-working-on-heroku-using-rails-4-with-bootstrap-saas-gem
+  config.cache_classes = true
+  config.serve_static_assets = true
+  config.assets.compile = true
+  config.assets.digest = true
 end

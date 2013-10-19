@@ -1,5 +1,5 @@
 <% @recipe.recipe_ingredients.each do |ri| %>
-  <div class="section"><%= "#{ri.quantity} #{ri.ingredient.name}" %></div>
+<div class="section"><%= "#{ri.quantity} #{ri.ingredient.try(:name)}" %></div>
 <% end %>
 <hr>
 <div class='section'>
@@ -9,3 +9,4 @@
 </div>
 
 <%= link_to "Add this Recipe to Meal Plan", add_recipe_meal_plans_path(:id => @recipe.id), class: 'btn no-print' %>
+<%= link_to "Edit this Recipe", edit_recipe_path(@recipe), class: 'btn no-print' %>

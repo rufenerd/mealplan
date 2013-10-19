@@ -10,6 +10,7 @@ Search for meals with many of these ingredients: <%= hidden_field_tag :search, {
     <th>Recipe</th>
     <th>Ingredients</th>
     <th></th>
+    <th></th>
   </tr>
   <% @recipes.each do |recipe| %>
     <tr>
@@ -18,6 +19,9 @@ Search for meals with many of these ingredients: <%= hidden_field_tag :search, {
       </td>
       <td>
         <%= recipe.ingredients.map(&:name).join(", ") %>
+      </td>
+      <td>
+        <%= link_to "edit", edit_recipe_path(recipe) %>
       </td>
       <td>
         <%= link_to "X", recipe_path(recipe), :method => :delete, :confirm => "Are you sure you want to destroy recipe \"" + recipe.name + "\"?"  %>

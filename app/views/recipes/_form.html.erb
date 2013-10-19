@@ -1,0 +1,44 @@
+<%= form_for @recipe do |f| %>
+  <div class="section">
+    <%= f.label :name %>
+    <%= f.text_field :name, size: 60 %>
+  </div>
+  <div class="section ingredient-forms">
+    <label>Ingredients</label>
+    <% 100.times do |i| #TODO: Not cool, use templates.  %>
+      <%= render :partial => "ingredient_form", :locals => { i: i, ri: @recipe.recipe_ingredients[i] || RecipeIngredient.new } %>
+    <% end %>
+    <button type ='button' class='add-button btn'>+</button>
+  </div>
+  <div class="section">
+    <%= f.label "Instructions", class: 'text-area-label' %>
+    <%= f.text_area :text, rows: 20, cols: 50 %>
+  </div>
+  <%= button_tag("Create Recipe!", class: 'recipe-submit btn') %>
+
+<% end %>
+
+<script>
+  $(".ingredient-input").select2({
+    placeholder: "Find or add ingredient",
+    createSearchChoice: function(term, data){
+      return { id: "NEWINGREDIENT[" + term + "]", text: term };
+    },
+  data: <%= ("[" + Ingredient.all.map{|i| "{id: #{i.id}, text: '#{i.name}'}"}.join(",") + "]").html_safe %>
+  });
+
+  _.each($(".ingredient-form.hidden").hide().splice(0,5), function(form){ $(form).removeClass('hidden').show(); })
+
+  $(".add-button").on("click", function(){
+    $(".ingredient-form.hidden").first().removeClass("hidden").show();
+  });
+
+  $(".destroy-ingredient-form").on("click", function(){
+    var form = $(this).parent().remove();
+  });
+
+  $(".recipe-submit").on('click', function(){
+    $(".hidden").remove();
+    $(".new_recipe").submit();    
+  });
+</script>

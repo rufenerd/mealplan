@@ -14,7 +14,7 @@
     <%= f.label "Instructions", class: 'text-area-label' %>
     <%= f.text_area :text, rows: 20, cols: 50 %>
   </div>
-  <%= button_tag("Create Recipe!", class: 'recipe-submit btn') %>
+  <%= button_tag(@recipe.new_record? ? "Create Recipe!" : "Update Recipe", class: 'recipe-submit btn') %>
 
 <% end %>
 

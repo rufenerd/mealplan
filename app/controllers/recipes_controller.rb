@@ -76,10 +76,17 @@ class RecipesController < ApplicationController
         ri_params.merge!(ingredient_id: i.id)
       end
 
+      destroy_it = ri_params.delete(:destroy)
+
       if ri_params[:id].blank?
         RecipeIngredient.create(ri_params.merge(recipe_id: recipe.id))
       else
-        RecipeIngredient.find(ri_params[:id].to_i).update_attributes(ri_params)
+        ri = RecipeIngredient.find(ri_params[:id].to_i)
+        if destroy_it == "1"
+          ri.destroy
+        else
+          ri.update_attributes(ri_params)
+        end
       end
     end
   end

@@ -36,8 +36,7 @@
   });
 
   $(".destroy-ingredient-form").on("click", function(){
-    var form = $(this).parent().remove();
-    //TODO: set up recipe ingredient to be destroyed list in params to send to server
+    $(this).parent().hide().find(".destroy").val('1');
   });
 
   $(".recipe-submit").on('click', function(){

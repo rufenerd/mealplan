@@ -3,6 +3,7 @@
     <%= ingredient_fields.text_field :quantity, placeholder: 'Quantity', size: '29', value: ri.quantity %>
     <%= ingredient_fields.hidden_field(:ingredient_id, :class => 'ingredient-input', value: ri.ingredient.try(:id)) %>
     <%= ingredient_fields.hidden_field(:id, value: ri.id) %>
+    <%= ingredient_fields.hidden_field(:destroy, class: 'destroy') %>
   <% end %>
   <button type ='button' class='destroy-ingredient-form btn'>-</button>
   <br/>

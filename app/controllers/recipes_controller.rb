@@ -69,7 +69,7 @@ class RecipesController < ApplicationController
 
   def process_ingredient_params(recipe)
     params[:recipe_ingredients].each do |num, ri_params|
-      next if ri_params[:quantity].blank? && ri_params[:ingredient_id].blank?
+      next if ri_params[:ingredient_id].blank? && ri_params[:destroy] != "1"
       match = ri_params[:ingredient_id].match(/NEWINGREDIENT\[(.+)\]/)
       if match
         i = Ingredient.find_by_name(match[1].strip) || Ingredient.create( name: match[1] )

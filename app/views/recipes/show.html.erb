@@ -1,5 +1,5 @@
 <% @recipe.recipe_ingredients.each do |ri| %>
-<div class="section"><%= "#{ri.quantity} #{ri.ingredient.try(:name)}" %></div>
+<div class="section"><%= "#{ri.quantity} #{ri.ingredient.name}" %></div>
 <% end %>
 <hr>
 <div class='section'>

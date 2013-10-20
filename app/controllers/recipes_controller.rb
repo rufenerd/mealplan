@@ -68,18 +68,18 @@ class RecipesController < ApplicationController
   end
 
   def process_ingredient_params(recipe)
-    params[:recipe_ingredients].each do |num, ri|
-      next if ri[:quantity].blank? && ri[:ingredient_id].blank?
-      match = ri[:ingredient_id].match(/NEWINGREDIENT\[(.+)\]/)
+    params[:recipe_ingredients].each do |num, ri_params|
+      next if ri_params[:quantity].blank? && ri_params[:ingredient_id].blank?
+      match = ri_params[:ingredient_id].match(/NEWINGREDIENT\[(.+)\]/)
       if match
         i = Ingredient.find_by_name(match[1].strip) || Ingredient.create( name: match[1] )
-        ri.merge!(ingredient_id: i.id)
+        ri_params.merge!(ingredient_id: i.id)
       end
 
-      if ri[:id].blank?
-        RecipeIngredient.create(ri.merge(recipe_id: recipe.id))
+      if ri_params[:id].blank?
+        RecipeIngredient.create(ri_params.merge(recipe_id: recipe.id))
       else
-        RecipeIngredient.find(ri[:id].to_i).update_attributes(ri)
+        RecipeIngredient.find(ri_params[:id].to_i).update_attributes(ri_params)
       end
     end
   end

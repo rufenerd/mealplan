@@ -27,7 +27,9 @@
   data: <%= ("[" + Ingredient.all.map{|i| "{id: #{i.id}, text: '#{i.name}'}"}.join(",") + "]").html_safe %>
   });
 
-  _.each($(".ingredient-form.hidden").hide().splice(0,<%= @recipe.recipe_ingredients.try(:size) || 5 %>), function(form){ $(form).removeClass('hidden').show(); })
+  _.each($(".ingredient-form.hidden").hide().splice(0,<%= [@recipe.recipe_ingredients.try(:size), 5].compact.max %>),
+    function(form){ $(form).removeClass('hidden').show(); }
+  );
 
   $(".add-button").on("click", function(){
     $(".ingredient-form.hidden").first().removeClass("hidden").show();
@@ -35,6 +37,7 @@
 
   $(".destroy-ingredient-form").on("click", function(){
     var form = $(this).parent().remove();
+    //TODO: set up recipe ingredient to be destroyed list in params to send to server
   });
 
   $(".recipe-submit").on('click', function(){

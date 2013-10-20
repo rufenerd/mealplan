@@ -11,6 +11,7 @@ Search for meals with many of these ingredients: <%= hidden_field_tag :search, {
     <th>Ingredients</th>
     <th></th>
     <th></th>
+    <th></th>
   </tr>
   <% @recipes.each do |recipe| %>
     <tr>
@@ -19,6 +20,9 @@ Search for meals with many of these ingredients: <%= hidden_field_tag :search, {
       </td>
       <td>
         <%= recipe.ingredients.map(&:name).join(", ") %>
+      </td>
+      <td>
+        <%= link_to "add to meal plan", add_recipe_meal_plans_path(:id => recipe.id) %>
       </td>
       <td>
         <%= link_to "edit", edit_recipe_path(recipe) %>

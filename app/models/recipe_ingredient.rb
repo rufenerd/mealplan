@@ -7,6 +7,6 @@ class RecipeIngredient < ActiveRecord::Base
   private
 
   def destroy_ingedient_if_unused
-    ingredient.destroy if ingredient.recipes.empty?
+    ingredient.destroy if ingredient && ingredient.recipes.empty?
   end
 end

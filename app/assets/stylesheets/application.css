@@ -217,3 +217,7 @@ h1 {
   font-style: italics;
   text-decoration: underline;
 }
+
+input.required {
+  border-color: red;
+}

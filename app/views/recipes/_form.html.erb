@@ -14,7 +14,7 @@
     <%= f.label "Instructions", class: 'text-area-label' %>
     <%= f.text_area :text, rows: 20, cols: 50 %>
   </div>
-  <%= button_tag(@recipe.new_record? ? "Create Recipe!" : "Update Recipe", class: 'recipe-submit btn') %>
+  <%= button_tag(@recipe.new_record? ? "Create Recipe!" : "Update Recipe", class: 'recipe-submit btn', type: 'button') %>
 
 <% end %>
 
@@ -40,7 +40,14 @@
   });
 
   $(".recipe-submit").on('click', function(){
-    $(".hidden").remove();
-    $(".new_recipe").submit();    
+    var $nameInput = $("#recipe_name");
+    if ($nameInput.val() == "") {
+      $nameInput.focus();
+      $nameInput.addClass('required');
+      alert("Name can not be blank");
+    } else {
+      $(".hidden").remove();
+      $(".new_recipe").submit();
+    }
   });
 </script>

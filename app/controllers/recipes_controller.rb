@@ -1,19 +1,19 @@
 class RecipesController < ApplicationController
   def new
     @title = "New Recipe"
-    @recipe = Recipe.new
+    @recipe = Recipe.new(params[:recipe].permit(:name, :instructions, :text, :recipe_ingredients))
   end
 
   def create
-    r = Recipe.new(recipe_params)
-    if r.save
-      process_ingredient_params(r)
+    @recipe = Recipe.new(recipe_params)
+    if @recipe.save
+      process_ingredient_params(@recipe)
       flash[:notice] = "Successfully created new recipe"
     else
-      flash[:alert] = r.errors.full_messages.join(" | ")
+      flash[:alert] = @recipe.errors.full_messages.join(" | ")
       flash.keep
     end
-    redirect_to :action => :new
+    redirect_to :action => :new, :recipe => params[:recipe]
   end
 
   def edit

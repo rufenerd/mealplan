@@ -1,7 +1,7 @@
 class RecipesController < ApplicationController
   def new
     @title = "New Recipe"
-    @recipe = Recipe.new(params[:recipe].permit(:name, :instructions, :text, :recipe_ingredients))
+    @recipe = Recipe.new(params[:recipe].try(:permit, :name, :instructions, :text, :recipe_ingredients))
   end
 
   def create

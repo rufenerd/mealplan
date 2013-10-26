@@ -9,11 +9,12 @@ class RecipesController < ApplicationController
     if @recipe.save
       process_ingredient_params(@recipe)
       flash[:notice] = "Successfully created new recipe"
+      redirect_to :action => :new
     else
       flash[:alert] = @recipe.errors.full_messages.join(" | ")
       flash.keep
+      redirect_to :action => :new, :recipe => params[:recipe]
     end
-    redirect_to :action => :new, :recipe => params[:recipe]
   end
 
   def edit

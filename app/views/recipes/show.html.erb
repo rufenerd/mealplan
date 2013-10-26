@@ -4,7 +4,7 @@
 <hr>
 <div class='section'>
   <p class='user-text'>
-    <%= @recipe.text %>
+    <%= @recipe.text_with_bold_ingredients.html_safe %>
   </p>
 </div>
 

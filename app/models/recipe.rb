@@ -13,4 +13,11 @@ class Recipe < ActiveRecord::Base
       (ingredients & other_ingredients).size
     end
   end
+
+  def text_with_bold_ingredients
+    ingredients.map(&:name).each do |ingredient_name|
+      text.gsub!(ingredient_name, "<b>#{ingredient_name}</b>")
+    end
+    text
+  end
 end

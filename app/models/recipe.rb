@@ -14,10 +14,10 @@ class Recipe < ActiveRecord::Base
     end
   end
 
-  def text_with_bold_ingredients
+  def text_with_span_on_ingredient_names
     ingredients.map(&:name).each do |ingredient_name|
-      text.gsub!(ingredient_name, "<b>#{ingredient_name}</b>")
-      text.gsub!(ingredient_name.capitalize, "<b>#{ingredient_name.capitalize}</b>")
+      text.gsub!(ingredient_name, "<span class='ingredient_name'>#{ingredient_name}</span>")
+      text.gsub!(ingredient_name.capitalize, "<span class='ingredient_name'>#{ingredient_name.capitalize}</span>")
     end
     text
   end

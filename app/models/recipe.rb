@@ -17,6 +17,7 @@ class Recipe < ActiveRecord::Base
   def text_with_bold_ingredients
     ingredients.map(&:name).each do |ingredient_name|
       text.gsub!(ingredient_name, "<b>#{ingredient_name}</b>")
+      text.gsub!(ingredient_name.capitalize, "<b>#{ingredient_name.capitalize}</b>")
     end
     text
   end

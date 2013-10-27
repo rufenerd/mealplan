@@ -171,6 +171,7 @@ table td {
 	text-decoration:none;
 	text-align:center;
 	text-shadow:1px 1px 0px #689324;
+	cursor: pointer;
 }
 .btn:hover {
 	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #8cb82b), color-stop(1, #97bf21) );

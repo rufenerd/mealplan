@@ -222,3 +222,7 @@ h1 {
 input.required {
   border-color: red;
 }
+
+.hidden {
+  display: none;
+}

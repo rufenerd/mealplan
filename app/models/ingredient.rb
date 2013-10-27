@@ -8,7 +8,7 @@ class Ingredient < ActiveRecord::Base
 
   ALL_CATEGORIES = ["Staples",
                     "Grains/Spices/Oils/Sauces/Canned Foods",
-                    "Dairy/Eggs/Deli",
+                    "Dairy/Eggs/Deli/Meat",
                     "Bakery/Bread/Tortillas",
                     "Produce/Flowers",
                     "Snack Foods/Packaged Meals/Frozen Foods",

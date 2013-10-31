@@ -24,7 +24,7 @@
     createSearchChoice: function(term, data){
       return { id: "NEWINGREDIENT[" + term + "]", text: term };
     },
-    data: <%= ("[" + Ingredient.all.map{|i| "{id: #{i.id}, text: '#{i.name}'}"}.join(",") + "]").html_safe %>,
+    data: <%= ("[" + Ingredient.all.sort_by(&:name).map{|i| "{id: #{i.id}, text: '#{i.name}'}"}.join(",") + "]").html_safe %>,
     width: '165px'
   });
 

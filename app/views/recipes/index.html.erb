@@ -41,7 +41,7 @@ Search for meals with many of these ingredients: <%= hidden_field_tag :search, {
 <script>
   $(".search-input").select2({
     multiple: true,
-    data: <%= ("[" + Ingredient.all.map{|i| "{id: #{i.id}, text: '#{i.name}'}"}.join(",") + "]").html_safe %>,
+    data: <%= ("[" + Ingredient.all.sort_by(&:name).map{|i| "{id: #{i.id}, text: '#{i.name}'}"}.join(",") + "]").html_safe %>,
     width: "400px"
   });
 

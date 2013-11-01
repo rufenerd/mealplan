@@ -5,6 +5,8 @@ Search for meals with many of these ingredients: <%= hidden_field_tag :search, {
 <% if num_recipes_in_current_meal_plan > 0 %>
   <%= submit_tag "Sort by overlap with current meal plan", class: 'overlap-submit btn' %>
 <% end %>
+<%= link_to "Add New Recipe", new_recipe_path, class: 'btn' %>
+
 <table>
   <tr>
     <th>Recipe</th>

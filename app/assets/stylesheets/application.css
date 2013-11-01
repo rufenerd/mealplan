@@ -188,7 +188,7 @@ table td {
  line-height: 15px;
 }
 
-a.btn {
+a.btn, input.btn {
   padding: 5px;
 }
 

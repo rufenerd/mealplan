@@ -79,7 +79,6 @@ table td {
 .nav {
   width: 100%;
   background-color: #28700A;
-  padding: 2px;
 }
 
 .nav ul {
@@ -91,6 +90,7 @@ table td {
 
 .nav li  {
   float:left;
+  padding: 2px;
 }
 
 .nav a {
@@ -207,7 +207,6 @@ a.btn, input.btn {
 h1 {
   width: 100%;
   background-color: #98bf21;
-  height: 60px;
   text-align: center;
   font-size: 50px;
   margin: 0;

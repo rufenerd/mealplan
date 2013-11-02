@@ -50,10 +50,14 @@ class RecipesController < ApplicationController
         ids = Recipe.find(recipe_ids_in_current_mealplan).map(&:ingredient_ids).flatten
         @recipes = @recipes.reject{|r| recipe_ids_in_current_mealplan.include?(r.id)}
       else
-        ids = params[:search].split(",").map(&:to_i)
+        @searched_ingredient_ids = params[:search].split(",").map(&:to_i)
       end
 
-      @recipes = @recipes.sort_by{|r| r.ingredients_in_common(ids) }.reverse
+      @num_matching_ingredients_by_recipe_id = {}
+      @recipes.each{ |r| @num_matching_ingredients_by_recipe_id[r.id] = r.ingredients_in_common(@searched_ingredient_ids) }
+
+      @recipes = @recipes.sort_by{ |r| @num_matching_ingredients_by_recipe_id[r.id] }.reverse
+      @recipes.reject!{ |r| @num_matching_ingredients_by_recipe_id[r.id].zero? }
     else
       @recipes = @recipes.sort_by(&:name)
     end

@@ -55,6 +55,7 @@ table th {
 	border-style: solid;
 	border-color: #666666;
 	background-color: #98bf21;
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 20%, from(#BBEB2B), to(#98bf21))
 }
 table td {
 	border-width: 1px;
@@ -79,6 +80,7 @@ table td {
 .nav {
   width: 100%;
   background-color: #28700A;
+  background-image: -webkit-gradient(linear, 0% 0, 0% 100%, from(#28700A), to(#1B4908));
 }
 
 .nav ul {
@@ -207,6 +209,7 @@ a.btn, input.btn {
 h1 {
   width: 100%;
   background-color: #98bf21;
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 13%, from(#BBEB2B), to(#98BF21));
   text-align: center;
   font-size: 50px;
   margin: 0;

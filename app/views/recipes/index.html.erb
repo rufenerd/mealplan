@@ -8,36 +8,41 @@ Search for meals with many of these ingredients:
 <%= link_to "Clear Search", recipes_path, class: 'short btn' %>
 <br/>
 <br/>
-<%= link_to "Add New Recipe", new_recipe_path, class: 'btn' %>
+<% if @recipes.empty? %>
+  Sorry. No recipes matched this search.<br/><br/>
+<% else %>
+  <%= link_to "Add New Recipe", new_recipe_path, class: 'btn' %>
 
-<table>
-  <tr>
-    <th>Recipe</th>
-    <th>Ingredients</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-  <% @recipes.each do |recipe| %>
+  <table>
     <tr>
-      <td>
-        <%= link_to recipe.name, recipe_path(recipe) %>
-      </td>
-      <td>
-        <%= recipe.ingredients.map(&:name).map{|i| (@searched_ingredient_names || []).include?(i) ? i.gsub!(i, "<span class='ingredient_name'>#{i}</span>") : i }.join(", ").html_safe %>
-      </td>
-      <td>
-        <%= recipe_ids_in_current_meal_plan.include?(recipe.id) ? "In Current Meal Plan" : link_to("Add To Meal Plan", add_recipe_meal_plans_path(:id => recipe.id)) %>
-      </td>
-      <td>
-        <%= link_to "edit", edit_recipe_path(recipe) %>
-      </td>
-      <td>
-        <%= link_to "X", recipe_path(recipe), :method => :delete, :confirm => "Are you sure you want to destroy recipe \"" + recipe.name + "\"?"  %>
-      </td>
+      <th>Recipe</th>
+      <th>Ingredients</th>
+      <th></th>
+      <th></th>
+      <th></th>
     </tr>
-  <% end %>
-</table>
+    <% @recipes.each do |recipe| %>
+      <tr>
+        <td>
+          <%= link_to recipe.name, recipe_path(recipe) %>
+        </td>
+        <td>
+          <%= recipe.ingredients.map(&:name).map{|i| (@searched_ingredient_names || []).include?(i) ? i.gsub!(i, "<span class='ingredient_name'>#{i}</span>") : i }.join(", ").html_safe %>
+        </td>
+        <td>
+          <%= recipe_ids_in_current_meal_plan.include?(recipe.id) ? "In Current Meal Plan" : link_to("Add To Meal Plan", add_recipe_meal_plans_path(:id => recipe.id)) %>
+        </td>
+        <td>
+          <%= link_to "edit", edit_recipe_path(recipe) %>
+        </td>
+        <td>
+          <%= link_to "X", recipe_path(recipe), :method => :delete, :confirm => "Are you sure you want to destroy recipe \"" + recipe.name + "\"?"  %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>
+
 <%= link_to "Add New Recipe", new_recipe_path, class: 'btn' %>
 
 

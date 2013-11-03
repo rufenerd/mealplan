@@ -43,11 +43,11 @@ class RecipesController < ApplicationController
   def index
     @title = "Recipes"
     @recipes = Recipe.all
+    recipe_ids_in_current_mealplan = session[:recipe_ids].split(",").map(&:to_i)
 
     if params[:search]
       if params[:search].include?("overlap")
         @overlap = true
-        recipe_ids_in_current_mealplan = session[:recipe_ids].split(",").map(&:to_i)
         ids = Recipe.find(recipe_ids_in_current_mealplan).map(&:ingredient_ids).flatten
         @recipes = @recipes.reject{|r| recipe_ids_in_current_mealplan.include?(r.id)}
       else
@@ -59,7 +59,7 @@ class RecipesController < ApplicationController
         @recipes.reject!{ |r| @num_matching_ingredients_by_recipe_id[r.id].zero? }
       end
     else
-      @recipes = @recipes.sort_by(&:name)
+      @recipes = @recipes.sort_by{ |r| [recipe_ids_in_current_mealplan.include?(r.id) ? 1 : 2, r.name] }
     end
   end
 

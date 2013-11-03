@@ -41,7 +41,11 @@ class MealPlansController < ApplicationController
   end
 
   def remove_recipes
-    session[:recipe_ids] = ""
+    if params[:id]
+      session[:recipe_ids] = (session[:recipe_ids] || "").split(",").reject{|rid| rid == params[:id].to_s }.join(",")
+    else
+      session[:recipe_ids] = ""
+    end
     redirect_to recipes_path
   end
 end

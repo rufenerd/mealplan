@@ -30,7 +30,7 @@ Search for meals with many of these ingredients:
           <%= recipe.ingredients.map(&:name).map{|i| (@searched_ingredient_names || []).include?(i) ? i.gsub!(i, "<span class='ingredient_name'>#{i}</span>") : i }.join(", ").html_safe %>
         </td>
         <td>
-          <%= recipe_ids_in_current_meal_plan.include?(recipe.id) ? "In Current Meal Plan" : link_to("Add To Meal Plan", add_recipe_meal_plans_path(:id => recipe.id)) %>
+          <%= recipe_ids_in_current_meal_plan.include?(recipe.id) ? "In Current Meal Plan (#{link_to('Remove', remove_recipes_meal_plans_path(:id => recipe.id))})".html_safe : link_to("Add To Meal Plan", add_recipe_meal_plans_path(:id => recipe.id)) %>
         </td>
         <td>
           <%= link_to "edit", edit_recipe_path(recipe) %>

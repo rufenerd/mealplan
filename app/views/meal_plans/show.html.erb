@@ -7,7 +7,7 @@
   <% @ingredients_by_category.each do |category, ingredients| %>
      <div class='hanging-indent'>
        <% ingredients.each do |i| %>
-          <strong><%= i.name %></strong><%= (": " + @shopping_list[i].map{|ri| "#{ri.quantity} (for #{ri.recipe.name})" }.join(" <strong>&</strong>")).html_safe %>
+          <strong><%= i.name %></strong><%= (": " + @shopping_list[i].map{|ri| "#{ri.quantity} (for #{ri.recipe.name})" }.join(" <strong>&</strong> ")).html_safe %>
           <br/>
         <% end %>
       </div>

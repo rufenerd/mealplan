@@ -54,6 +54,8 @@ class RecipesController < ApplicationController
         @searched_ingredient_ids = params[:search].split(",").map(&:to_i)
       end
 
+      @searched_ingredient_names = Ingredient.find(@searched_ingredient_ids).map(&:name)
+
       @num_matching_ingredients_by_recipe_id = {}
       @recipes.each{ |r| @num_matching_ingredients_by_recipe_id[r.id] = r.ingredients_in_common(@searched_ingredient_ids) }
 

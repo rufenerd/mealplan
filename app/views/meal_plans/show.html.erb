@@ -6,9 +6,9 @@
   <h3><u>Shopping List:</u></h3>
   <% @ingredients_by_category.each do |category, ingredients| %>
      <% ingredients.each do |i| %>
-       <p class='hanging-indent'>
+       <div class='hanging-indent'>
          <strong><%= i.name %></strong><%= (": " + @shopping_list[i].map{|ri| "#{ri.quantity} (for #{ri.recipe.name})" }.join(" <strong>&</strong> ")).html_safe %>
-       </p>
+       </div>
       <% end %>
   <% end %>
 </div>

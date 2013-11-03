@@ -48,16 +48,17 @@ class RecipesController < ApplicationController
     if params[:search]
       if params[:search].include?("overlap")
         @overlap = true
-        ids = Recipe.find(recipe_ids_in_current_mealplan).map(&:ingredient_ids).flatten
+        @searched_ingredient_ids = Recipe.find(recipe_ids_in_current_mealplan).map(&:ingredient_ids).flatten.uniq
         @recipes = @recipes.reject{|r| recipe_ids_in_current_mealplan.include?(r.id)}
       else
         @searched_ingredient_ids = params[:search].split(",").map(&:to_i)
-        @num_matching_ingredients_by_recipe_id = {}
-        @recipes.each{ |r| @num_matching_ingredients_by_recipe_id[r.id] = r.ingredients_in_common(@searched_ingredient_ids) }
-
-        @recipes = @recipes.sort_by{ |r| @num_matching_ingredients_by_recipe_id[r.id] }.reverse
-        @recipes.reject!{ |r| @num_matching_ingredients_by_recipe_id[r.id].zero? }
       end
+
+      @num_matching_ingredients_by_recipe_id = {}
+      @recipes.each{ |r| @num_matching_ingredients_by_recipe_id[r.id] = r.ingredients_in_common(@searched_ingredient_ids) }
+
+      @recipes = @recipes.sort_by{ |r| @num_matching_ingredients_by_recipe_id[r.id] }.reverse
+      @recipes.reject!{ |r| @num_matching_ingredients_by_recipe_id[r.id].zero? }
     else
       @recipes = @recipes.sort_by{ |r| [recipe_ids_in_current_mealplan.include?(r.id) ? 1 : 2, r.name] }
     end

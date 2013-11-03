@@ -3,7 +3,7 @@ Search for meals with many of these ingredients: <%= hidden_field_tag :search, {
 <%= link_to "Clear Search", recipes_path, class: 'short btn' %>
 <br/>
 <br/>
-<% if num_recipes_in_current_meal_plan > 0 %>
+<% if recipe_ids_in_current_meal_plan.any? %>
   <%= submit_tag "Sort by overlap with current meal plan", class: 'overlap-submit btn' %>
 <% end %>
 <%= link_to "Add New Recipe", new_recipe_path, class: 'btn' %>
@@ -25,7 +25,7 @@ Search for meals with many of these ingredients: <%= hidden_field_tag :search, {
         <%= recipe.ingredients.map(&:name).join(", ") %>
       </td>
       <td>
-        <%= link_to "add to meal plan", add_recipe_meal_plans_path(:id => recipe.id) %>
+        <%= recipe_ids_in_current_meal_plan.include?(recipe.id) ? "In Current Meal Plan" : link_to("Add To Meal Plan", add_recipe_meal_plans_path(:id => recipe.id)) %>
       </td>
       <td>
         <%= link_to "edit", edit_recipe_path(recipe) %>

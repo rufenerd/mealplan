@@ -232,3 +232,8 @@ input.required {
 .hidden {
   display: none;
 }
+
+.hanging-indent {
+    padding-left: 22px;
+    text-indent: -22px;
+}

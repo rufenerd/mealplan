@@ -1,6 +1,6 @@
 <div class="ingredient-form hidden">
   <%= fields_for "recipe_ingredients[#{i}]" do |ingredient_fields| %>
-    <%= ingredient_fields.text_field :quantity, placeholder: 'Quantity', size: '29', value: ri.quantity,  visibility: 'hidden' %>
+    <%= ingredient_fields.text_field :quantity, placeholder: 'Quantity and Preparation', size: '29', value: ri.quantity,  visibility: 'hidden' %>
     <%= ingredient_fields.hidden_field(:ingredient_id, :class => 'ingredient-input', value: ri.ingredient.try(:id)) %>
     <%= ingredient_fields.hidden_field(:id, value: ri.id) %>
     <%= ingredient_fields.hidden_field(:destroy, class: 'destroy') %>

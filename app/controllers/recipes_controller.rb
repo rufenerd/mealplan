@@ -46,6 +46,7 @@ class RecipesController < ApplicationController
 
     if params[:search]
       if params[:search].include?("overlap")
+        @overlap = true
         recipe_ids_in_current_mealplan = session[:recipe_ids].split(",").map(&:to_i)
         ids = Recipe.find(recipe_ids_in_current_mealplan).map(&:ingredient_ids).flatten
         @recipes = @recipes.reject{|r| recipe_ids_in_current_mealplan.include?(r.id)}

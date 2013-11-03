@@ -1,13 +1,15 @@
-Search for meals with many of these ingredients: <%= hidden_field_tag :search, {}, class: 'search-input' %>
+Search for meals with many of these ingredients:
+<br/>
+<%= hidden_field_tag :search, {}, class: 'search-input' %>
 <%= submit_tag "Search", class: 'search-submit short btn' %>
+<% if recipe_ids_in_current_meal_plan.any? && !@overlap %>
+  <%= submit_tag "Overlap with current meal plan", class: 'overlap-submit short btn' %>
+<% end %>
 <%= link_to "Clear Search", recipes_path, class: 'short btn' %>
 <br/>
 <br/>
-<% if recipe_ids_in_current_meal_plan.any? && !@overlap %>
-  <%= submit_tag "Sort by overlap with current meal plan", class: 'overlap-submit btn' %>
-<% end %>
 <%= link_to "Add New Recipe", new_recipe_path, class: 'btn' %>
-<%= "<br/><br/><strong>Sorting by overlap with current meal plan. #{link_to('Clear search to stop.', recipes_path)}</strong>".html_safe if @overlap %>
+
 <table>
   <tr>
     <th>Recipe</th>

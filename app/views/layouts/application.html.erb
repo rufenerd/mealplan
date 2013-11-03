@@ -18,6 +18,7 @@
         <li><%= link_to "Meal Plans", meal_plans_path %></li>
         <li><%= link_to "Ingredients", ingredients_path %></li>
         <% if recipe_ids_in_current_meal_plan.any? %>
+          <li><%= link_to("Current Meal Plan", meal_plan_path(id: 'current')) %></li>
           <li><%= link_to("Save Meal Plan with #{recipe_ids_in_current_meal_plan.size} Recipe(s)", meal_plans_path, method: :post) %></li>
           <li><%= link_to "Empty Meal Plan", remove_recipes_meal_plans_path %></li>
         <% end %>

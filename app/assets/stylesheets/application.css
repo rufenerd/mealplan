@@ -186,6 +186,10 @@ table td {
 	top:1px;
 }
 
+.short {
+ line-height: 15px;
+}
+
 .ingredient-forms .btn {
  line-height: 15px;
 }

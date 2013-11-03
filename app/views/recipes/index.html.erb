@@ -1,6 +1,6 @@
 Search for meals with many of these ingredients: <%= hidden_field_tag :search, {}, class: 'search-input' %>
-<%= submit_tag :search, class: 'search-submit btn' %>
-<%= link_to "Clear Seach", recipes_path, class: 'btn' %>
+<%= submit_tag "Search", class: 'search-submit short btn' %>
+<%= link_to "Clear Search", recipes_path, class: 'short btn' %>
 <br/>
 <br/>
 <% if num_recipes_in_current_meal_plan > 0 %>

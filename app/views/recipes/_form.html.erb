@@ -19,12 +19,15 @@
 <% end %>
 
 <script>
+  var ingredientDataForSelect2 = <%= ("[" + Ingredient.all.sort_by(&:name).map{|i| "{id: #{i.id}, text: '#{i.name}'}"}.join(",") + "]").html_safe %>;
   $(".ingredient-input").select2({
     placeholder: "Find or add ingredient",
     createSearchChoice: function(term, data){
-      return { id: "NEWINGREDIENT[" + term + "]", text: term };
+      if (_.isUndefined(_.find(ingredientDataForSelect2, function(d){ return d.text == term; }))) {
+        return { id: "NEWINGREDIENT[" + term + "]", text: term };
+      }
     },
-    data: <%= ("[" + Ingredient.all.sort_by(&:name).map{|i| "{id: #{i.id}, text: '#{i.name}'}"}.join(",") + "]").html_safe %>,
+    data: ingredientDataForSelect2,
     width: '165px'
   });
 

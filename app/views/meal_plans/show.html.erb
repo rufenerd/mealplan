@@ -1,5 +1,5 @@
 <div class='section'>
-  <strong style="font-size: 20px;">Recipes:</strong> <%= @meal_plan.recipes.map{|r| link_to r.name, recipe_path(r.id) }.join("&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;").html_safe %>
+  <strong style="font-size: 20px;">Recipes:</strong> <%= @meal_plan.recipes.map{|r| link_to r.name, recipe_path(r.id), class: 'blue-visited' }.join("&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;").html_safe %>
 </div>
 
 <div class='section'>

@@ -32,8 +32,8 @@ label {
   width: 150px;
 }
 
-a:vistited {
-  color: #abc123
+.blue-visited, table a:visited {
+  color: blue;
 }
 
 input {

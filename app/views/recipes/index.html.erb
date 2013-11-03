@@ -33,10 +33,10 @@ Search for meals with many of these ingredients:
           <%= recipe_ids_in_current_meal_plan.include?(recipe.id) ? "In Current Meal Plan (#{link_to('Remove', remove_recipes_meal_plans_path(:id => recipe.id))})".html_safe : link_to("Add To Meal Plan", add_recipe_meal_plans_path(:id => recipe.id)) %>
         </td>
         <td>
-          <%= link_to "edit", edit_recipe_path(recipe) %>
+          <%= link_to image_tag("pencil.png", :border => 0), edit_recipe_path(recipe) %>
         </td>
         <td>
-          <%= link_to "X", recipe_path(recipe), :method => :delete, :confirm => "Are you sure you want to destroy recipe \"" + recipe.name + "\"?"  %>
+          <%= link_to image_tag("cross.png", :border => 0), recipe_path(recipe), :method => :delete, :confirm => "Are you sure you want to destroy recipe \"" + recipe.name + "\"?"  %>
         </td>
       </tr>
     <% end %>

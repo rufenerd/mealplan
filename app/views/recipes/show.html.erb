@@ -8,6 +8,12 @@
   </p>
 </div>
 
-<%= link_to "Add this Recipe to Meal Plan", add_recipe_meal_plans_path(:id => @recipe.id), class: 'btn no-print' %>
 <%= link_to "Edit this Recipe", edit_recipe_path(@recipe), class: 'btn no-print' %>
-<%= link_to "Delete this Recipe", recipe_path(@recipe), confirm:  "Are you sure?", method: :delete, class: 'btn no-print' %>
+<% if recipe_ids_in_current_meal_plan.include?(@recipe.id) %>
+  <%= link_to "Remove this Recipe from Meal Plan", remove_recipes_meal_plans_path(:id => @recipe.id), class: 'btn no-print' %>
+<% else %>
+  <%= link_to "Add this Recipe to Meal Plan", add_recipe_meal_plans_path(:id => @recipe.id), class: 'btn no-print' %>
+  <%= link_to("Delete this Recipe", recipe_path(@recipe), confirm:  "Are you sure?", method: :delete, class: 'btn no-print') %>
+<% end %>
+
+  

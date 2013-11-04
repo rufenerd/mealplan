@@ -30,7 +30,9 @@ Search for meals with many of these ingredients:
           <%= recipe.ingredients.map(&:name).map{|i| (@searched_ingredient_names || []).include?(i) ? i.gsub!(i, "<span class='ingredient_name'>#{i}</span>") : i }.join(", ").html_safe %>
         </td>
         <td>
-          <%= recipe_ids_in_current_meal_plan.include?(recipe.id) ? "In Current Meal Plan (#{link_to('Remove', remove_recipes_meal_plans_path(:id => recipe.id))})".html_safe : link_to("Add To Meal Plan", add_recipe_meal_plans_path(:id => recipe.id)) %>
+          <% remove_recipe_from_meal_plan_link = link_to('Remove', remove_recipes_meal_plans_path(:id => recipe.id, search: params[:search])) %>
+          <% add_recipe_to_meal_plan_link = link_to("Add To Meal Plan", add_recipe_meal_plans_path(id: recipe.id, search: params[:search])) %>
+          <%= recipe_ids_in_current_meal_plan.include?(recipe.id) ? "In Current Meal Plan (#{remove_recipe_from_meal_plan_link})".html_safe : add_recipe_to_meal_plan_link %>
         </td>
         <td>
           <%= link_to image_tag("pencil.png", :border => 0), edit_recipe_path(recipe) %>
@@ -68,6 +70,6 @@ Search for meals with many of these ingredients:
   });
 
   $(".overlap-submit").on("click", function(){
-      window.location ="/recipes?search='overlap'"
+      window.location ="/recipes?search=overlap"
   });
 </script>

@@ -43,7 +43,7 @@ class RecipesController < ApplicationController
   def index
     @title = "Recipes"
     @recipes = Recipe.all
-    recipe_ids_in_current_mealplan = session[:recipe_ids].split(",").map(&:to_i)
+    recipe_ids_in_current_mealplan = (session[:recipe_ids] || "").split(",").map(&:to_i)
 
     if params[:search]
       if params[:search].include?("overlap")

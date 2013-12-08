@@ -2,8 +2,8 @@ Mealplan::Application.routes.draw do
   resources :recipes
   resources :meal_plans do
     collection do
-      get 'add_recipe'
-      get 'remove_recipes'
+      put 'add_recipe'
+      put 'remove_recipes'
     end
   end
 

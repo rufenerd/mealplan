@@ -27,7 +27,7 @@ class RecipesController < ApplicationController
     if r.update_attributes(params.require(:recipe).permit(:name, :instructions, :text))
       process_ingredient_params(r)
       flash[:notice] = "Successfully edited #{r.name}"
-      redirect_to :action => :index
+      redirect_to recipe_path(r)
     else
       flash[:alert] = r.errors.full_messages.join(" | ")
       flash.keep

@@ -48,3 +48,5 @@ end
 
 gem "select2-rails"
 gem "underscore-rails"
+
+gem 'newrelic_rpm'

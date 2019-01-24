@@ -27,8 +27,8 @@ ActiveRecord::Schema.define(version: 20130925014338) do
     t.datetime "updated_at"
   end
 
-  add_index "meal_plan_recipes", ["meal_plan_id"], name: "index_meal_plan_recipes_on_meal_plan_id", using: :btree
-  add_index "meal_plan_recipes", ["recipe_id"], name: "index_meal_plan_recipes_on_recipe_id", using: :btree
+  add_index "meal_plan_recipes", ["meal_plan_id"], name: "index_meal_plan_recipes_on_meal_plan_id"
+  add_index "meal_plan_recipes", ["recipe_id"], name: "index_meal_plan_recipes_on_recipe_id"
 
   create_table "meal_plans", force: true do |t|
     t.datetime "created_at"
@@ -43,8 +43,8 @@ ActiveRecord::Schema.define(version: 20130925014338) do
     t.datetime "updated_at"
   end
 
-  add_index "recipe_ingredients", ["ingredient_id"], name: "index_recipe_ingredients_on_ingredient_id", using: :btree
-  add_index "recipe_ingredients", ["recipe_id"], name: "index_recipe_ingredients_on_recipe_id", using: :btree
+  add_index "recipe_ingredients", ["ingredient_id"], name: "index_recipe_ingredients_on_ingredient_id"
+  add_index "recipe_ingredients", ["recipe_id"], name: "index_recipe_ingredients_on_recipe_id"
 
   create_table "recipes", force: true do |t|
     t.string   "name"

@@ -1,5 +1,5 @@
 development:
-  adapter: mysql2
+  adapter: sqlite3
   encoding: utf8
   database: mealplan_dev
   pool: 5
@@ -7,7 +7,7 @@ development:
   password:
 
 test: &TEST
-  adapter: mysql2
+  adapter: sqlite3
   encoding: utf8
   database: mealplan_test
   pool: 5
@@ -15,7 +15,7 @@ test: &TEST
   password:
 
 production:
-  adapter: mysql2
+  adapter: sqlite3
   encoding: utf8
   database: mealplan_prod
   pool: 5

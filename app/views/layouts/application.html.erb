@@ -3,6 +3,25 @@
 <head>
   <title>Mealplan<%= ': ' + @title unless @title.blank? %></title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <script src="https://www.google.com/recaptcha/api.js?render=6LdUxYoUAAAAAFUc9IOTZHJpNWK6GdeRnF7xzhd3"></script>
+  <script>
+    grecaptcha.ready(function() {
+      grecaptcha.execute('6LdUxYoUAAAAAFUc9IOTZHJpNWK6GdeRnF7xzhd3', {action: 'homepage'}).then(function(token) {
+        const postParams = {
+          headers: {
+            "content-type": "application/json; charset=UTF-8"
+          },
+          method: "POST"
+        }
+        const url = 'https://cors-escape.herokuapp.com/https://www.google.com/recaptcha/api/siteverify?' + $.param({ secret: "6LdUxYoUAAAAAJv8Z8KVXn6CY8OrTG3uHZk4soAp", response: token })
+        fetch(url, postParams).then(function(response) {
+          return response.json()
+        }).then(function(responseJson) {
+          newrelic.setCustomAttribute('recaptchaScore', responseJson.score)
+        })
+      })
+    })
+  </script>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>

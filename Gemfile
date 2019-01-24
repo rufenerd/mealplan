@@ -6,7 +6,7 @@ gem 'rails', '4.0.0'
 
 # Use sqlite3 as the database for Active Record
 # TODO: HEROKU NO SUPPORT DKR gem 'sqlite3'
-gem 'sqlite3'
+gem 'mysql2'
 
 
 # Use SCSS for stylesheets

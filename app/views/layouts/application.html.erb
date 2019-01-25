@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <script src="https://www.google.com/recaptcha/api.js?render=6LdUxYoUAAAAAFUc9IOTZHJpNWK6GdeRnF7xzhd3"></script>
   <script>
     grecaptcha.ready(function() {
       console.log("ready")
@@ -24,7 +25,6 @@
   </script>
   <title>Mealplan<%= ': ' + @title unless @title.blank? %></title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <script src="https://www.google.com/recaptcha/api.js?render=6LdUxYoUAAAAAFUc9IOTZHJpNWK6GdeRnF7xzhd3"></script>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>

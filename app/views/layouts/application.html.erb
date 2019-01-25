@@ -3,27 +3,25 @@
 <head>
   <script src="https://www.google.com/recaptcha/api.js?render=6LdUxYoUAAAAAFUc9IOTZHJpNWK6GdeRnF7xzhd3"></script>
   <script>
-    setTimeout(function(){
-      grecaptcha.ready(function() {
-        console.log("ready")
-        grecaptcha.execute('6LdUxYoUAAAAAFUc9IOTZHJpNWK6GdeRnF7xzhd3', {action: 'homepage'}).then(function(token) {
-          console.log("got token: " + token)
-          const postParams = {
-            headers: {
-              "content-type": "application/json; charset=UTF-8"
-            },
-            method: "POST"
-          }
-          const url = 'https://cors-escape.herokuapp.com/https://www.google.com/recaptcha/api/siteverify?' + $.param({ secret: "6LdUxYoUAAAAAJv8Z8KVXn6CY8OrTG3uHZk4soAp", response: token })
-          fetch(url, postParams).then(function(response) {
-            return response.json()
-          }).then(function(responseJson) {
-            console.log("got score: " + responseJson.score)
-            newrelic.setCustomAttribute('recaptchaScore', responseJson.score)
-          })
+    grecaptcha.ready(function() {
+      console.log("ready")
+      grecaptcha.execute('6LdUxYoUAAAAAFUc9IOTZHJpNWK6GdeRnF7xzhd3', {action: 'homepage'}).then(function(token) {
+        console.log("got token: " + token)
+        const postParams = {
+          headers: {
+            "content-type": "application/json; charset=UTF-8"
+          },
+          method: "POST"
+        }
+        const url = 'https://cors-escape.herokuapp.com/https://www.google.com/recaptcha/api/siteverify?' + $.param({ secret: "6LdUxYoUAAAAAJv8Z8KVXn6CY8OrTG3uHZk4soAp", response: token })
+        fetch(url, postParams).then(function(response) {
+          return response.json()
+        }).then(function(responseJson) {
+          console.log("got score: " + responseJson.score)
+          newrelic.setCustomAttribute('recaptchaScore', responseJson.score)
         })
       })
-    }, 2000);
+    })
   </script>
   <title>Mealplan<%= ': ' + @title unless @title.blank? %></title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
@@ -31,6 +29,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <image src='https://upload.wikimedia.org/wikipedia/commons/2/24/Willaerts_Adam_The_Embarkation_of_the_Elector_Palantine_Oil_Canvas-huge.jpg'/>
   <div class='header'>
     <% unless @title.blank? %>
       <h1 class ='no-print'><%= @title %></h1>

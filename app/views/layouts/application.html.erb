@@ -23,13 +23,13 @@
       })
     })
   </script>
+  <image src='https://upload.wikimedia.org/wikipedia/commons/2/24/Willaerts_Adam_The_Embarkation_of_the_Elector_Palantine_Oil_Canvas-huge.jpg'/>
   <title>Mealplan<%= ': ' + @title unless @title.blank? %></title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <image src='https://upload.wikimedia.org/wikipedia/commons/2/24/Willaerts_Adam_The_Embarkation_of_the_Elector_Palantine_Oil_Canvas-huge.jpg'/>
   <div class='header'>
     <% unless @title.blank? %>
       <h1 class ='no-print'><%= @title %></h1>
